@@ -1,0 +1,8 @@
+{
+  "txnId": 24,
+  "payerMobileNumber": "9876543210",
+  "payeeMobileNumber": "0123456789",
+  "amount": 200.0,
+  "timestamp": "2022-02-15T11:08:39.000+00:00",
+  "status": "Success"
+}

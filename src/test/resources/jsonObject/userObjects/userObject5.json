@@ -1,0 +1,10 @@
+{
+  "userId" : 3,
+  "userName" : "Ds099",
+  "firstName" : "Steve",
+  "lastName" : "Smith",
+  "mobileNumber": "5432109876",
+  "emailId" : "alexsmith@gmail.com",
+  "password" : "12345",
+  "address1" : "Time square, NY, USA"
+}
