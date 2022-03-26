@@ -38,24 +38,24 @@ public class UserService {
     @Autowired
     JwtUtil jwtUtil;
 
-    private static Logger logger = LogManager.getLogger(UserService.class);
+//    private static Logger logger = LogManager.getLogger(UserService.class);
 
     //Method for sign up user
     public ResponseEntity<?> signUpUser(User user){
         if(userRepository.findByUserName(user.getUserName())!=null){
-            logger.debug("Username = "+user.getUserName()+" already exist. Different username required.");
+//            logger.debug("Username = "+user.getUserName()+" already exist. Different username required.");
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username already Exist.Try different Username"));
         }
         if(userRepository.findByEmailId(user.getEmailId())!=null){
-            logger.debug("Email = "+user.getEmailId()+" already exist. Different email required");
+//            logger.debug("Email = "+user.getEmailId()+" already exist. Different email required");
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Email already Exist.Try different Email"));
         }
         if(userRepository.findByMobileNumber(user.getMobileNumber())!=null){
-            logger.debug("Mobile Number = "+user.getMobileNumber()+" already exist. Different mobile number required");
+//            logger.debug("Mobile Number = "+user.getMobileNumber()+" already exist. Different mobile number required");
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Mobile Number already Exist.Try different Mobile Number"));
@@ -63,8 +63,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 
-        logger.debug("Signup complete");
-        logger.info("signup details. username = "+user.getUserName()+" mobile number = "+user.getMobileNumber());
+//        logger.debug("Signup complete");
+//        logger.info("signup details. username = "+user.getUserName()+" mobile number = "+user.getMobileNumber());
 
         return ResponseEntity.ok(new MessageResponse("Signup Complete"));
     }
@@ -79,14 +79,14 @@ public class UserService {
             UserDetails userDetails=this.customUserDetailsService.loadUserByUsername(signInRequestBody.getUsername());
             String jwt =this.jwtUtil.generateToken(userDetails);
 
-            logger.debug("Sign in complete");
-            logger.info("sign in details. Username = "+signInRequestBody.getUsername());
+//            logger.debug("Sign in complete");
+//            logger.info("sign in details. Username = "+signInRequestBody.getUsername());
 
             return ResponseEntity.ok(new SignInResponseBody(jwt));
         }
 
         catch (Exception exception) {
-            logger.error("Invalid credentials");
+//            logger.error("Invalid credentials");
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Invalid credentials!"));

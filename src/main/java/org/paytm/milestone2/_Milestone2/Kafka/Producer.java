@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 public class Producer {
     public String walletTopic = "walletTopic";
     public String transactionTopic = "transactionTopic";
+//    public String testtopic = "testtopic";
+
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemp;
@@ -20,4 +22,9 @@ public class Producer {
         System.out.println("Publishing to transactionTopic "+transactionTopic);
         this.kafkaTemp.send(transactionTopic, message);
     }
+
+//    public void publishToTestTopic(String message) {
+//        System.out.println("Publishing to walletTopic "+testtopic);
+//        this.kafkaTemp.send(testtopic, message);
+//    }
 }
