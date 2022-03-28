@@ -15,12 +15,14 @@ import org.apache.http.HttpHost;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.client.Requests;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.context.event.EventListener;
 
 import java.util.*;
 
 @Component
+@Profile("!test")
 public class FlinkMessage {
 
         @EventListener(ApplicationReadyEvent.class)
