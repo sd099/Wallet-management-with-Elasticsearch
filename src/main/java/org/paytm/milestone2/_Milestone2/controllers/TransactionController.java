@@ -17,9 +17,6 @@ public class TransactionController {
     @Autowired
     Producer producer;
 
-//    @Autowired
-//    FlinkMessage flinkMessage;
-
     //Method to get username from jwt token
     public String getUserNameFromToken(){
         String UserName = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -37,7 +34,6 @@ public class TransactionController {
         //If transaction creation is successfull push to transactionTopic in kafka
         if(response.getStatusCodeValue()==200){
             producer.publishToTransactionTopic(transactionP2pRequestBody.getAmount()+" Amount transferred from "+transactionP2pRequestBody.getPayerMobileNumber()+" to "+transactionP2pRequestBody.getPayeeMobileNumber());
-//            flinkMessage.StreamConsumer();
         }
         return response;
     }

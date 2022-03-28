@@ -23,8 +23,6 @@ import java.util.*;
 @Component
 public class FlinkMessage {
 
-//    public static void main(String args[]) throws Exception {
-
         @EventListener(ApplicationReadyEvent.class)
         public static void kafkaFlinkElasticsearch() throws Exception {
 
@@ -61,12 +59,20 @@ public class FlinkMessage {
                 httpHosts,
                 new ElasticsearchSinkFunction<String>() {
                     public IndexRequest createIndexRequest(String element) {
+
+                        String arr[] = element.split(" ",7);
+                        String amount = arr[0];
+                        String payerNumber = arr[4];
+                        String payeeNumber = arr[6];
+
                         Map<String, String> json = new HashMap<>();
-                        json.put("data", element);
+                        json.put("amount", amount);
+                        json.put("payerNumber", payerNumber);
+                        json.put("payeeNumber", payeeNumber);
 
                         return Requests.indexRequest()
                                 .index("testing2")
-                                .type("String")
+                                .type("testing")
                                 .source(json);
                     }
 
